@@ -3,6 +3,7 @@ package net.gjerull.etherpad.client;
 import java.net.URL;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 /**
  * A class for easily executing an HTTP GET request.<br />
@@ -32,7 +33,7 @@ public class GETRequest implements Request {
      * @return String
      */
     public String send() throws Exception {
-        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(),StandardCharsets.UTF_8));
         StringBuilder response = new StringBuilder();
         String buffer;
         while ((buffer = in.readLine()) != null) {
