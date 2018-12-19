@@ -34,6 +34,11 @@ public class EPLiteClientIntegrationTest {
                 
                 
         );
+
+                ((ch.qos.logback.classic.Logger) org.slf4j.LoggerFactory
+         .getLogger("org.mockserver.mock"))
+            .setLevel(ch.qos.logback.classic.Level.OFF);
+
         mockServer = startClientAndServer(9001);
       
 
