@@ -18,40 +18,48 @@ import java.nio.charset.StandardCharsets;
  * </code>
  */
 public class POSTRequest implements Request {
-    private final URL url;
-    private final String body;
 
-    /**
-     * Instantiates a new POSTRequest.
-     *
-     * @param url the URL object
-     * @param body url-encoded (application/x-www-form-urlencoded) request body
-     */
-    public POSTRequest(URL url, String body) {
-        this.url = url;
-        this.body = body;
-    }
+	/** The url. */
+	private final URL url;
 
-    /**
-     * Sends the request and returns the response.
-     * 
-     * @return String
-     */
-    public String send() throws Exception {
-        URLConnection con = this.url.openConnection();
-        con.setDoOutput(true);
+	/** The body. */
+	private final String body;
 
-        OutputStreamWriter out = new OutputStreamWriter(con.getOutputStream(), StandardCharsets.UTF_8);
-        out.write(this.body);
-        out.close();
+	/**
+	 * Instantiates a new POSTRequest.
+	 *
+	 * @param url  the URL object
+	 * @param body url-encoded (application/x-www-form-urlencoded) request
+	 *             body
+	 */
+	public POSTRequest(final URL url, final String body) {
+		this.url = url;
+		this.body = body;
+	}
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8));
-        StringBuilder response = new StringBuilder();
-        String buffer;
-        while ((buffer = in.readLine()) != null) {
-            response.append(buffer);
-        }
-        in.close();
-        return response.toString();
-    }
+	/**
+	 * Sends the request and returns the response.
+	 *
+	 * @return String
+	 * @throws Exception the exception
+	 */
+	public String send() throws Exception {
+		final URLConnection con = this.url.openConnection();
+		con.setDoOutput(true);
+
+		final OutputStreamWriter out = new OutputStreamWriter(
+				con.getOutputStream(), StandardCharsets.UTF_8);
+		out.write(this.body);
+		out.close();
+
+		final BufferedReader in = new BufferedReader(new InputStreamReader(
+				con.getInputStream(), StandardCharsets.UTF_8));
+		final StringBuilder response = new StringBuilder();
+		String buffer;
+		while ((buffer = in.readLine()) != null) {
+			response.append(buffer);
+		}
+		in.close();
+		return response.toString();
+	}
 }

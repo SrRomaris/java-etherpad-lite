@@ -1,5 +1,15 @@
 package net.gjerull.etherpad.client;
 
+/**
+ * The Interface Request.
+ */
 public interface Request {
-    String send() throws Exception;
+
+	/**
+	 * Send.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
+	String send() throws Exception;
 }

@@ -16,30 +16,34 @@ import java.nio.charset.StandardCharsets;
  * </code>
  */
 public class GETRequest implements Request {
-    private final URL url;
 
-    /**
-     * Instantiates a new GETRequest.
-     * 
-     * @param url the URL object
-     */
-    public GETRequest(URL url) {
-        this.url = url;
-    }
+	/** The url. */
+	private final URL url;
 
-    /**
-     * Sends the request and returns the response.
-     * 
-     * @return String
-     */
-    public String send() throws Exception {
-        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(),StandardCharsets.UTF_8));
-        StringBuilder response = new StringBuilder();
-        String buffer;
-        while ((buffer = in.readLine()) != null) {
-            response.append(buffer);
-        }
-        in.close();
-        return response.toString();
-    }
+	/**
+	 * Instantiates a new GETRequest.
+	 *
+	 * @param url the URL object
+	 */
+	public GETRequest(final URL url) {
+		this.url = url;
+	}
+
+	/**
+	 * Sends the request and returns the response.
+	 *
+	 * @return String
+	 * @throws Exception the exception
+	 */
+	public String send() throws Exception {
+		final BufferedReader in = new BufferedReader(new InputStreamReader(
+				url.openStream(), StandardCharsets.UTF_8));
+		final StringBuilder response = new StringBuilder();
+		String buffer;
+		while ((buffer = in.readLine()) != null) {
+			response.append(buffer);
+		}
+		in.close();
+		return response.toString();
+	}
 }
